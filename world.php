@@ -8,6 +8,7 @@ $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $p
 $stmt = $conn->query("SELECT * FROM countries");
 
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$country = $_GET['country'];
 
 ?>
 <ul>
