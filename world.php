@@ -12,13 +12,15 @@ $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $p
 
 $country = $_GET['country'];
 
-// ensures that a country is received, shows an error if not
+// ensures that a country is received, shows an error if not (validation)
 if(!isset($country)){
   echo nl2br("ERROR: Invalid entry for country queried for! Either the country doesn't exist in this database
   or it was entered incorrectly. Please check your input.\n");
 } else {
-  // currently unfiltered and unsanitized
-  $stmt = $conn ->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
+  // now filtered (sanitization)
+  $stmt = $conn->prepare("SELECT * FROM countries WHERE name LIKE '%$country%'");
+  $country = filter_input(INPUT_GET, 'country', FILTER_SANITIZE_STRING);
+  $stmt->execute();
   $results = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
