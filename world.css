@@ -17,3 +17,19 @@ header {
     justify-content: center;
     align-items: center;
 }
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+#country {
+    width: 35rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 3px 3px 5px lightblue;
+    border-radius: 5px;
+    outline: none;
+}
