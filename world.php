@@ -21,15 +21,33 @@ if(!isset($country)){
   $stmt = $conn->prepare("SELECT * FROM countries WHERE name LIKE '%$country%'");
   $country = filter_input(INPUT_GET, 'country', FILTER_SANITIZE_STRING);
   $stmt->execute();
-  $results = $stmt->fetch(PDO::FETCH_ASSOC);
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // getting the country in the database
 if ($results == false){
   echo "ERROR: No records acquired from the database. Please check your input";
-} else {
-  echo htmlentities($results['name']);
-}
+} else { ?>
 
-?>
+<table>
+  <thead>
+    <tr>
+      <th>Country Name</th>
+      <th>Continent</th>
+      <th>Independence Year</th>
+      <th>Head of State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($results as $result): ?>
+    <tr>
+      <td><?= $result['name']; ?></td>
+      <td><?= $result['continent']; ?></td>
+      <td><?= $result['independence_year']; ?></td>
+      <td><?= $result['head_of_state']; ?></td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
 
+<?php } ?>
