@@ -6,6 +6,7 @@ function main() {
     // create references to the necessary elements in HTML
     let countryInput = document.getElementById("country");
     let submitBtn = document.getElementById("lookup");
+    let lookupCitiesBtn = document.getElementById("lookup-cities");
     let resourceUrl = "http://localhost/info2180-lab5/world.php"
     let result = document.getElementById("result");
 
@@ -17,6 +18,23 @@ function main() {
         if (inputValue !== '') {
             console.log(inputValue);
             fetch(resourceUrl + `?country=${inputValue}`)
+                .then(response => { return response.text() })
+                .then(txtResp => {
+                    result.innerHTML = txtResp;
+                })
+                .catch(error => console.log(error));
+        } else {
+            result.textContent = "Please enter a country!";
+        }
+    });
+
+    lookupCitiesBtn.addEventListener('click', (event) => {
+
+        event.preventDefault();
+        const inputValue = countryInput.value.trim();
+        if (inputValue !== '') {
+            console.log(inputValue);
+            fetch(resourceUrl + `?country=${inputValue}&lookup=cities`)
                 .then(response => { return response.text() })
                 .then(txtResp => {
                     result.innerHTML = txtResp;
