@@ -12,6 +12,11 @@ $stmt = $conn->query("SELECT * FROM countries");
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $country = $_GET['country'];
 
+// getting the country in the database
+$statement = $conn ->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
+$row = $statement-> fetch(PDO::FETCH_ASSOC);
+echo htmlentities($row['name']);
+
 ?>
 <ul>
 <?php foreach ($results as $row): ?>
