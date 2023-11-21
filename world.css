@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: hsl(240, 20%, 90%);
 }
 
 header {
