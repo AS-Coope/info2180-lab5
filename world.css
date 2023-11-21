@@ -40,6 +40,7 @@ main {
     border-radius: 5px;
     outline: none;
     margin: 0.3rem 0;
+    padding-left: 0.7rem;
 }
 
 #button-group {
