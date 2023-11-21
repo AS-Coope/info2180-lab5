@@ -11,6 +11,7 @@ $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $p
 //$stmt = $conn->query("SELECT * FROM countries");
 
 $country = $_GET['country'];
+$lookup = $_GET['lookup'];
 
 // ensures that a country is received, shows an error if not (validation)
 if(!isset($country)){
