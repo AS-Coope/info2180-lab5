@@ -27,6 +27,7 @@ main {
     display: flex;
     flex-direction: column;
     font-size: 1.5rem;
+    padding-top: 1.2rem;
 }
 
 #country {
@@ -37,4 +38,31 @@ main {
     box-shadow: 3px 3px 5px lightblue;
     border-radius: 5px;
     outline: none;
+    margin: 0.3rem 0;
+}
+
+#button-group {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 2rem;
+}
+
+#lookup,
+#lookup-cities {
+    width: 10rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 900;
+}
+
+#lookup {
+    background-color: hsl(142, 68%, 35%)
+}
+
+#lookup-cities {
+    background-color: hsl(236, 56%, 60%)
 }
