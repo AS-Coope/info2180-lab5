@@ -64,6 +64,11 @@ main {
     cursor: pointer;
 }
 
+#lookup:hover,
+#lookup-cities:hover {
+    border: 2px solid black;
+}
+
 #lookup {
     background-color: hsl(142, 68%, 35%)
 }
