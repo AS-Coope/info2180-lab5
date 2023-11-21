@@ -61,9 +61,8 @@ if ($lookup !== "cities"){
       or it was entered incorrectly. Please check your input.\n");
     } else {
       // now filtered (sanitization)
-      $stmt = $conn->prepare("SELECT name, code  FROM countries WHERE name LIKE '%$country%'");
+      $stmt = $conn->prepare("SELECT cities.name, cities.district, cities.population FROM cities JOIN countries ON cities.country_code = countries.code WHERE countries.code = (SELECT code FROM countries WHERE name LIKE '%$country%')");
       $country = filter_input(INPUT_GET, 'country', FILTER_SANITIZE_STRING);
-      $lookup = filter_input(INPUT_GET, 'lookup', FILTER_SANITIZE_STRING);
       $stmt->execute();
       $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -76,15 +75,17 @@ if ($lookup !== "cities"){
     <table>
       <thead>
         <tr>
-          <th>Country Name</th>
-          <th>Continent</th>
+          <th>City Name</th>
+          <th>District</th>
+          <th>Population</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($results as $result): ?>
         <tr>
           <td><?= $result['name']; ?></td>
-          <td><?= $result['code']; ?></td>
+          <td><?= $result['district']; ?></td>
+          <td><?= $result['population']; ?></td>
         </tr>
         <?php endforeach; ?>
       </tbody>
