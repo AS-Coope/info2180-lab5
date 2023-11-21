@@ -10,6 +10,22 @@ function main() {
     let result = document.getElementById("result");
 
     // listen for button click
+    submitBtn.addEventListener('click', (event) => {
+
+        event.preventDefault();
+        const inputValue = countryInput.value.trim();
+        if (inputValue !== '') {
+            console.log(inputValue);
+            fetch(resourceUrl + `?country=${inputValue}`)
+                .then(response => { return response.text() })
+                .then(txtResp => {
+                    result.innerHTML = txtResp;
+                })
+                .catch(error => console.log(error));
+        } else {
+            result.textContent = "Please enter a country!";
+        }
+    });
     // get data from user (remember to validate)
     // use fetch to send request to the server
     // ensure, on server side, request is sanitized and filtered
